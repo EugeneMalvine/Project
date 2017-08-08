@@ -1,0 +1,5 @@
+com\vit\domain\service\UsersServiceImpl.class
+com\vit\domain\MyBatisSample.class
+com\vit\domain\persistence\UsersMapper.class
+com\vit\domain\service\UsersService.class
+com\vit\domain\Users.class
