@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.persistence.PersonMapper">
+
+    <resultMap id="personResultMap" type="Person">
+        <id property="id" column="ID" />
+        <result property="firstName" column="FIRST_NAME" />
+        <result property="lastName" column="LAST_NAME" />
+    </resultMap>
+
+    <select id="findAll" resultMap="personResultMap">
+        SELECT ID, First_Name, LAST_NAME
+        FROM userlist
+    </select>
+    
+    <select id="findById" parameterType="long" resultMap="personResultMap">
+        SELECT ID,FIRST_NAME,LAST_NAME
+        FROM userlist
+        WHERE ID = #{id}
+    </select>
+    
+    <insert id="insert" parameterType="Person" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO userlist (FIRST_NAME, LAST_NAME)
+        VALUES (#{firstName}, #{lastName} )
+    </insert>   
+    
+    <update id="update" parameterType="Person">
+        UPDATE userlist SET
+            FIRST_NAME = #{firstName},
+            LAST_NAME = #{lastName}
+        WHERE ID = #{id}   
+    </update>       
+    
+    <delete id="delete" parameterType="long">
+        DELETE FROM userlist WHERE ID = #{id}
+    </delete>
+
+    
+</mapper>
