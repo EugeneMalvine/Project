@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page pageEncoding="UTF-8"%>
+<%request.setCharacterEncoding("UTF-8");%>
 <html>
 <head>
     <title>Devcolibri.com exam REST</title>
@@ -11,12 +13,18 @@
     var RestGet = function() {
         $.ajax({
             type: 'GET',
-            url:  prefix,
+            url: prefix,
             dataType: 'json',
             async: true,
             success: function(result) {
+                console.log(result);
                 collection = result;
-                document.write( collection );
+                console.log(collection);
+                for(i=0;i < result.length;i++)
+                {
+                  document.writeln(collection[i].firstName + ' ' + collection[i].lastName);
+                }
+                //document.write( collection );
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert(jqXHR.status + ' ' + jqXHR.responseText);
@@ -57,8 +65,8 @@
             data: id,
             async: true,
             success: function(result) {
-                alert('Время: ' + result.time
-                    + ', сообщение: ' + result.message);
+                alert('абаЕаМб: ' + result.time
+                    + ', баОаОаБбаЕаНаИаЕ: ' + result.message);
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert(jqXHR.status + ' ' + jqXHR.responseText);
@@ -69,11 +77,11 @@
 
 <body>
 
-<h3>Это простой пример использования REST c помощью Ajax</h3>
+<h3>а­баО аПбаОббаОаЙ аПбаИаМаЕб аИбаПаОаЛбаЗаОаВаАаНаИб REST c аПаОаМаОббб Ajax</h3>
 
-<button type="button" onclick="RestGet()">Метод GET</button>
-<button type="button" onclick="RestAdd()">Метод POST</button>
-<button type="button" onclick="RestDelete()">Метод DELETE</button>
+<button type="button" onclick="RestGet()">ааЕбаОаД GET</button>
+<button type="button" onclick="RestAdd()">ааЕбаОаД POST</button>
+<button type="button" onclick="RestDelete()">ааЕбаОаД DELETE</button>
 
 
 </body>

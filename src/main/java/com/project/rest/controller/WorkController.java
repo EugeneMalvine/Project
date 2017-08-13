@@ -1,6 +1,7 @@
 package com.project.rest.controller;
 
 import com.project.service.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +15,9 @@ import com.project.domain.Person;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/work")
+@RequestMapping(value = "/functional")
 public class WorkController {
+
 
     PersonService personMapper;
     {
@@ -30,7 +32,8 @@ public class WorkController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<Person> getUsers() {
-        return personMapper.findAll();
+        List<Person> temp = personMapper.findAll();
+        return temp;
     }
 
     @RequestMapping(method = RequestMethod.POST)
