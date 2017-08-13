@@ -1,13 +1,8 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page pageEncoding="UTF-8"%>
-<%request.setCharacterEncoding("UTF-8");%>
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
+    <title>Bootstrap</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -31,16 +26,14 @@
 </div>
 <div class="container">
     <div class="jumbotron">
-        <form action="${loginUrl}" method="post">
+        <form method="GET" action="/cgi-bin/form_handler.cgi">
             <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                    <!-- name="j_username" важно для спринговой авторизации  -->
-                <input type="email" class="form-control" name="j_username" id="exampleInputEmail1" placeholder="Email">
+                <label for="exampleInputName1">User's name: </label>
+                <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <!-- name="j_password" важно для спринговой авторизации  -->
-                <input type="password" class="form-control" name="j_password" id="exampleInputPassword1" placeholder="Password">
+                <label for="exampleInputLastName1">Last name</label>
+                <input type="text" class="form-control" id="exampleInputLastName1" placeholder="Last name">
             </div>
 
             <div class="checkbox">

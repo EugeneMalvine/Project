@@ -1,10 +1,10 @@
-
+<!--
 <%@ page language="java" contentType="text/html; charset=utf8"
     pageEncoding="utf8"%>
-<%request.setCharacterEncoding("UTF-8");%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+-->
 
 
 <!DOCTYPE html>
@@ -24,8 +24,6 @@
         <%@include file="js/butt.js"%>
     </script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
-
 </head>
 <body>
     <nav class="navbar navbar-inverse">
@@ -37,38 +35,48 @@
         </div>
     </nav>
 <div class="container">
-
-    <h3>User: </h3>
+    <h3>Admin: </h3>
     <form>
         <div class="row">
             <div class="col-xs-5">
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="First Name">
+                <input type="text" class="form-control" id="exampleInputName" placeholder="Name">
             </div>
-            <br/><br/><br/>
             <div class="col-xs-5">
-                 <input type="text"  class="form-control" id="password" placeholder="Second Name" >
+                 <input type="text" class="form-control" id="exampleInputLastName" placeholder="Last name">
             </div>
-            <br/><br/><br/>
-            <div>
-                <button type="button" class="btn btn-default" onclick="RestAdd()"><span class ="glyphicon glyphicon-ok"></span> Add</button>
-            </div>
-            <br/>
-            <button type="reset" class="btn btn-danger" onclick="RestDelete()"><span class="glyphicon glyphicon-remove"></span>Del</button>
+        </div>
+        <br>
+        <button type="button" class="btn btn-default" onclick="RestAdd()"><span class ="glyphicon glyphicon-ok"></span> Add</button>
+        <br>
+    </form>
+    <br>
+    <div class="jumbotron row">
+        <button type="submit" class="btn btn-primary" onclick="RestGet()"></span>Get List</button>
+        <div class="row">
             <div class="col-xs-2">
+            <br>
                 <input type="text" class="form-control" id="id" placeholder="id for deleted">
             </div>
+            <br>
+            <button type="reset" class="btn btn-danger" onclick="RestDelete()"><span class="glyphicon glyphicon-remove"></span>Del</button>
         </div>
-    </form>
-    <br/><br/>
-<div class="jumbotron">
-    <div>
-        <button type="submit" class="btn btn-primary" onclick="RestGet()"></span>Get List</button>
-        <div id="table" >
-        </div>
-    </div>
+        <br>
+        <table class="table table-striped">
+            <thead>
+                <tr class="active">
+                    <th>id</th>
+                    <th>Name</th>
+                    <th>Last name</th>
+                </tr>
+            </thead>
+            <tbody id="table" style="background: #ccc">
+
+            </tbody>
+
+        </table>
+
+    </div>   
 
 </div>
-</div>
-
 </body>
 </html>

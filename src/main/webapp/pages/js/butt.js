@@ -12,14 +12,14 @@ var collection = null;
                 collection = result;
                 console.log(collection);
 
-                tbl = '<table border=1, cellpadding=0, cellspacing=0, width="500px", align="center"><tr>';
+                tbl = '<tr>';
                 for(var i = 0; i < collection.length; i++){
-                    tbl += '<td>' + collection[i].id + '</td>';
-                    tbl += '<td>' + collection[i].firstName + '</td>';
-                    tbl += '<td>' + collection[i].lastName + '</td>';
+                    tbl += '<td> ' + collection[i].id + ' </td>';
+                    tbl += '<td> ' + collection[i].firstName + ' </td>';
+                    tbl += '<td> ' + collection[i].lastName + ' </td>';
                     tbl += '</tr><tr>';
                 }
-                tbl += '</tr></table>';
+                tbl += '</tr>';
                 document.getElementById("table").innerHTML = tbl;
 
                 //document.write( collection );
@@ -33,8 +33,8 @@ var collection = null;
 
     var RestAdd = function() {
         var JSONObject= {
-            'firstName': document.getElementById("exampleInputEmail1").value,
-            'lastName': document.getElementById("password").value
+            'firstName': document.getElementById("exampleInputName").value,
+            'lastName': document.getElementById("exampleInputLastName").value
         };
 
         $.ajax({
