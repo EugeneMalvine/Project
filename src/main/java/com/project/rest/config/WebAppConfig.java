@@ -42,10 +42,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter{
         registry.addResourceHandler(Constant.VIEW_FOLDER + "**").addResourceLocations(Constant.VIEW_FOLDER);
     }
 
-    @Bean
-    public UserDetailsService getUserDetailsService(){
-        return new UserDetailsServiceImpl();
-    }
+
    /* @Bean
     public UserDetailsService getUserDetailsService(){
         return new UserDetailsServiceImpl();

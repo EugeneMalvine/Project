@@ -14,7 +14,6 @@ var collection = null;
             tbl += '<td>' +  '<button type="reset" class="btn btn-danger" onclick=RestDelete("' +
                 collection[i].id + '")><span class="glyphicon glyphicon-remove"></span>Delete</button>' + '</td>';
 
-
             tbl += '</tr><tr>';
         }
         tbl += '</tr>';

@@ -44,6 +44,17 @@
         <property name="mapperLocations" value="classpath*:com/project/persistence/*.xml"/>
     </bean>
 
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory" />
+    </bean>
+
+    <!-- Scan for mappers and let them be autowired; notice there is no
+           UserDaoImplementation needed. The required SqlSessionFactory will be
+           autowired. -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.project.persistence" />
+    </bean>
+
     <!-- Directly injecting mappers. The required SqlSessionFactory will be autowired. -->
     <bean id="personMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" autowire="byType">
         <property name="mapperInterface" value="com.project.persistence.PersonMapper" />
@@ -55,7 +66,21 @@
         <property name="personMapper" ref="personMapper" />
     </bean>
 
-    <bean id="userService" class="com.project.service.UserServiceImpl">
+
+    <!-- Directly injecting mappers. The required SqlSessionFactory will be autowired. -->
+    <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" autowire="byType">
+        <property name="mapperInterface" value="com.project.persistence.UserMapper" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
+
+    <bean id="userService" class="com.project.service.UserServiceImpl">
+        <property name="userMapper" ref="userMapper"/>
+    </bean>
+
+    <bean id="userDetailsService"  class="com.project.service.UserDetailsServiceImpl">
+        <property name="userService" ref="userService"/>
+    </bean>
+
+
 
 </beans>

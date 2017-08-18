@@ -11,4 +11,8 @@ public interface UserService {
 
     User getUser(String login);
 
+    User save(User user);
+
+    void delete(User user);
+
 }

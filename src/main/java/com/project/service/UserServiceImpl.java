@@ -1,22 +1,56 @@
 package com.project.service;
 
 import com.project.domain.User;
+import com.project.persistence.PersonMapper;
+import com.project.persistence.UserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by Denis on 13.08.2017.
  */
-@Service
+@Service("userService")
+@Transactional
 public class UserServiceImpl implements UserService {
 
-    @Override
-    public User getUser(String login) {
-        User user = new User();
-        user.setLogin(login);
-        //sha1(1234)
-        user.setPassword("7110eda4d09e062aa5e4a390b0a572ac0d2c0220");
+    UserMapper userMapper;
 
-        return user;
+    public static UserMapper Mapper;
+
+    public void setUserMapper(UserMapper userMapper){
+        this.userMapper = userMapper;
+        Mapper = userMapper;
     }
 
+    @Override
+    public User save(User user) {
+        if(userMapper == null)
+            userMapper = Mapper;
+
+        User temp = userMapper.findByName(user.getLogin());
+        //if user exist
+        if(temp != null)
+        {
+            //maybe i must throw exception
+            return null;
+        }
+        userMapper.insert(user);
+        return userMapper.findByName(user.getLogin());
+    }
+
+    @Override
+    public void delete(User user) {
+        if(userMapper == null)
+            userMapper = Mapper;
+        userMapper.delete(user.getId());
+    }
+
+
+    @Override
+    public User getUser(String name) {
+        if(userMapper == null)
+            userMapper = Mapper;
+        return userMapper.findByName(name);
+    }
 }
