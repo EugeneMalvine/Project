@@ -14,4 +14,8 @@ public class IndexController {
         return "user";
     }
 
+    @RequestMapping(value ="login",method = RequestMethod.GET)
+    public String loginPage(Model model){
+        return "login";
+    }
 }

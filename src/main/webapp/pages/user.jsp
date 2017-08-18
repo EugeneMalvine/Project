@@ -4,6 +4,8 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 -->
 
 
@@ -21,7 +23,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script type="text/javascript">
-        <%@include file="js/butt.js"%>
+        <%@include file="js/functional.js"%>
     </script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
@@ -35,7 +37,14 @@
         </div>
     </nav>
 <div class="container">
-    <h3>Admin: </h3>
+
+    <sec:authorize access="hasRole('ROLE_ADMIN')">
+        <h3>Admin: </h3>
+    </sec:authorize>
+    <sec:authorize access="hasRole('ROLE_USER')">
+        <h3>User: </h3>
+    </sec:authorize>
+
     <form>
         <div class="row">
             <div class="col-xs-5">
@@ -58,9 +67,10 @@
                 <input type="text" class="form-control" id="id" placeholder="id for deleted">
             </div>
             <br>
-            <button type="reset" class="btn btn-danger" onclick="RestDelete()"><span class="glyphicon glyphicon-remove"></span>Del</button>
+                <button type="reset" class="btn btn-danger" onclick="RestDelete()"><span class="glyphicon glyphicon-remove"></span>Del</button>
         </div>
         <br>
+
         <table class="table table-striped">
             <thead>
                 <tr class="active">
@@ -74,6 +84,7 @@
             </tbody>
 
         </table>
+
 
     </div>   
 

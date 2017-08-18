@@ -1,16 +1,21 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Bootstrap</title>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <body>
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -26,14 +31,15 @@
 </div>
 <div class="container">
     <div class="jumbotron">
-        <form method="GET" action="/cgi-bin/form_handler.cgi">
+        <c:url value="/j_spring_security_check" var="loginUrl" />
+        <form method="post" action="${loginUrl}">
             <div class="form-group">
-                <label for="exampleInputName1">User's name: </label>
-                <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+                <label for="j_username">User's name: </label>
+                <input type="text" class="form-control" name="j_username" placeholder="Email address" required autofocus value="user" >
             </div>
             <div class="form-group">
-                <label for="exampleInputLastName1">Last name</label>
-                <input type="text" class="form-control" id="exampleInputLastName1" placeholder="Last name">
+                <label for="j_password">Last name</label>
+                <input type="password" class="form-control" name="j_password" placeholder="Password" required value="user">
             </div>
 
             <div class="checkbox">
@@ -41,7 +47,7 @@
                     <input type="checkbox"> Check me out
                 </label>
             </div>
-            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
         </form>
     </div>
 </div>

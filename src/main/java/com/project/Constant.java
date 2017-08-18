@@ -6,6 +6,6 @@ public class Constant{
     // указываем где будут лежать наши веб-страницы
     public static final String VIEW_FOLDER = "/pages/";
     // где искать контроллеры и остальные компоненты
-    public static final String COMPONENT_PACKAGE = "com.project.rest";
+    public static final String COMPONENT_PACKAGE = "com.project";
     public static final String DISPATCHER_SERVLET_NAME = "dispatcher";
 }

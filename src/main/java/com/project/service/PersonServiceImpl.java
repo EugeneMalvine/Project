@@ -10,11 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service("personService")
-@Repository
 @Transactional
 public class PersonServiceImpl implements PersonService {
-    @Autowired
+
     private PersonMapper personMapper;
+
+    public void setPersonMapper(PersonMapper personMapper){
+        this.personMapper = personMapper;
+    }
 
     public List<Person> findAll() {
         List<Person> persons = personMapper.findAll();

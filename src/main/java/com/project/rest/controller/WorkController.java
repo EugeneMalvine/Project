@@ -1,7 +1,9 @@
 package com.project.rest.controller;
 
 import com.project.service.PersonService;
+import com.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +20,7 @@ import java.util.List;
 @RequestMapping(value = "/functional")
 public class WorkController {
 
-
-    PersonService personMapper;
+    private PersonService personMapper;
     {
         GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
         ctx.load("classpath:ApplicationContext.xml");

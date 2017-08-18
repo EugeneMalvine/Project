@@ -7,8 +7,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
-
+import javax.servlet.ServletRegistration.Dynamic;
 import com.project.Constant;
 
 public class Initializer implements WebApplicationInitializer {
@@ -18,12 +17,12 @@ public class Initializer implements WebApplicationInitializer {
     public void onStartup(ServletContext servletContext) throws ServletException {
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
         ctx.register(WebAppConfig.class);
-       // ctx.register(SecurityConfig.class);
+        ctx.register(SecurityConfig.class);
         servletContext.addListener(new ContextLoaderListener(ctx));
 
         ctx.setServletContext(servletContext);
 
-        ServletRegistration.Dynamic servlet =
+        Dynamic servlet =
                 servletContext.addServlet(Constant.DISPATCHER_SERVLET_NAME, new DispatcherServlet(ctx));
         servlet.addMapping("/");
         servlet.setLoadOnStartup(1);
