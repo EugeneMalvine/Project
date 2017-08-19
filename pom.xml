@@ -25,7 +25,13 @@
     <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>4.7</version>
+        <version>4.12</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-all</artifactId>
+        <version>1.9.5</version>
         <scope>test</scope>
     </dependency>
     <dependency>
@@ -69,13 +75,11 @@
         <artifactId>spring-security-web</artifactId>
         <version>${spring-security.version}</version>
     </dependency>
-
     <dependency>
         <groupId>org.springframework.security</groupId>
         <artifactId>spring-security-config</artifactId>
         <version>${spring-security.version}</version>
     </dependency>
-
     <dependency>
         <groupId>org.springframework.security</groupId>
         <artifactId>spring-security-core</artifactId>
@@ -86,13 +90,11 @@
         <artifactId>spring-security-taglibs</artifactId>
         <version>${spring-security.version}</version>
     </dependency>
-
     <dependency>
         <groupId>org.springframework.data</groupId>
         <artifactId>spring-data-jpa</artifactId>
         <version>${spring-data-jpa.version}</version>
     </dependency>
-
     <dependency>
         <groupId>commons-dbcp</groupId>
         <artifactId>commons-dbcp</artifactId>

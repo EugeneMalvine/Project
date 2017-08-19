@@ -10,9 +10,13 @@ var collection = null;
             tbl += '<td> ' + collection[i].id + ' </td>';
             tbl += '<td> ' + collection[i].firstName + ' </td>';
             tbl += '<td> ' + collection[i].lastName + ' </td>'
-
-            tbl += '<td>' +  '<button type="reset" class="btn btn-danger" onclick=RestDelete("' +
-                collection[i].id + '")><span class="glyphicon glyphicon-remove"></span>Delete</button>' + '</td>';
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                tbl += '<td>' +  '<button type="reset" class="btn btn-danger" onclick=RestDelete("' +
+                    collection[i].id + '")><span class="glyphicon glyphicon-remove"></span>Delete</button>' + '</td>';
+            </sec:authorize>
+            <sec:authorize access="hasRole('ROLE_USER')">
+                tbl += '<td></td>';
+            </sec:authorize>
 
             tbl += '</tr><tr>';
         }
@@ -62,24 +66,6 @@ var collection = null;
         });
     }
 
-    //обработчик кнопки удалить ( нужно будет убрать!)
-    var RestDelete = function() {
-
-        var id = document.getElementById("id").value;
-        $.ajax({
-            type: 'DELETE',
-            url:  prefix ,
-            dataType: 'text',
-            data: id,
-            async: true,
-            success: function(result){
-                RestGet();
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                alert(jqXHR.status + ' ' + jqXHR.responseText);
-            }
-        });
-    }
 
     //запрос на удаление id из бд
     var RestDelete = function(id) {
