@@ -14,20 +14,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UserServiceImpl implements UserService {
 
-    UserMapper userMapper;
-
-    public static UserMapper Mapper;
+    public static UserMapper userMapper;
 
     public void setUserMapper(UserMapper userMapper){
         this.userMapper = userMapper;
-        Mapper = userMapper;
     }
 
     @Override
     public User save(User user) {
-        if(userMapper == null)
-            userMapper = Mapper;
-
         User temp = userMapper.findByName(user.getLogin());
         //if user exist
         if(temp != null)
@@ -41,16 +35,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(User user) {
-        if(userMapper == null)
-            userMapper = Mapper;
         userMapper.delete(user.getId());
     }
 
 
     @Override
     public User getUser(String name) {
-        if(userMapper == null)
-            userMapper = Mapper;
         return userMapper.findByName(name);
     }
 }

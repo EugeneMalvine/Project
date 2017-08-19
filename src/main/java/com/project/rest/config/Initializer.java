@@ -1,5 +1,6 @@
 package com.project.rest.config;
 
+import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -26,6 +27,12 @@ public class Initializer implements WebApplicationInitializer {
                 servletContext.addServlet(Constant.DISPATCHER_SERVLET_NAME, new DispatcherServlet(ctx));
         servlet.addMapping("/");
         servlet.setLoadOnStartup(1);
+
+        GenericXmlApplicationContext g_ctx = new GenericXmlApplicationContext();
+        g_ctx.load("classpath:ApplicationContext.xml");
+        g_ctx.refresh();
+
+
     }
 
 }

@@ -13,7 +13,7 @@ import java.util.List;
 @Transactional
 public class PersonServiceImpl implements PersonService {
 
-    private PersonMapper personMapper;
+    private static PersonMapper personMapper;
 
     public void setPersonMapper(PersonMapper personMapper){
         this.personMapper = personMapper;

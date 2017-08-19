@@ -20,15 +20,8 @@ import java.util.List;
 @RequestMapping(value = "/functional")
 public class WorkController {
 
+    @Autowired
     private PersonService personMapper;
-    {
-        GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
-        ctx.load("classpath:ApplicationContext.xml");
-        ctx.refresh();
-
-        personMapper = ctx.getBean("personService", PersonService.class);
-    }
-
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
