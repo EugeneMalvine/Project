@@ -35,12 +35,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         Set<GrantedAuthority> roles = new HashSet();
         int role = user.getRole();
 
-        if(role%2 == 1)
+        //проверка первого бита на true
+        if((role&1) != 0)
             roles.add(new SimpleGrantedAuthority("ROLE_USER"));
 
-        role>>=1;
-
-        if(role%2 == 1)
+        //проверка второго бита на true
+        if((role&2) != 0)
             roles.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 
         // на основании полученныйх даных формируем объект UserDetails
