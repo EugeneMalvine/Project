@@ -19,6 +19,12 @@
         FROM userlist
         WHERE ID = #{id}
     </select>
+
+    <select id="findRange" parameterType="int" resultMap="personResultMap">
+        SELECT *
+        FROM userlist
+        LIMIT #{param1},#{param2}
+    </select>
     
     <insert id="insert" parameterType="Person" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO userlist (FIRST_NAME, LAST_NAME)

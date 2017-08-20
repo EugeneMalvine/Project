@@ -19,6 +19,8 @@ public class MyBatisSample {
 		persons = personService.findAll();
 		listPersons(persons);
 
+		//get range
+		persons = personService.findRange(10,10);
 
 
 

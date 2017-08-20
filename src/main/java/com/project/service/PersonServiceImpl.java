@@ -24,6 +24,11 @@ public class PersonServiceImpl implements PersonService {
         return persons;
     }
 
+    @Override
+    public List<Person> findRange(int from, int ammount) {
+        return personMapper.findRange(from,ammount);
+    }
+
     public Person findById(Long id) {
         Person person = personMapper.findById(id);
         return person;

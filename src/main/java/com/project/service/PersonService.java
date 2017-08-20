@@ -20,4 +20,10 @@ public interface PersonService {
 
     //To clear collections
     public void clear();
+
+    //получить диапазон записей
+    //from - c какой записи
+    //ammount - сколько записей
+    public List<Person> findRange(int from,int ammount);
+
 }
