@@ -37,7 +37,7 @@ ENGINE = InnoDB;
 CREATE TABLE list (
   id       INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
-  user VARCHAR(255) NOT NULL
+  userlists INTEGER(11) NOT NULL
 )
   ENGINE = InnoDB;
 
