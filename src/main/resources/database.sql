@@ -32,9 +32,24 @@ CREATE TABLE user_roles (
 
   UNIQUE (user_id, role_id)
 )
-ENGINE = InnoDB;
 
-INSERT INTO users VALUES (1, 'proselyte', '$2a$11$uSXS6rLJ91WjgOHhEGDx..VGs7MkKZV68Lv5r1uwFu7HgtRn3dcXG');
+ENGINE = InnoDB;
+CREATE TABLE list (
+  id       INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  user VARCHAR(255) NOT NULL
+)
+  ENGINE = InnoDB;
+
+CREATE TABLE notes (
+  id       INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  checkmark INT(11) NOT NULL
+)
+  ENGINE = InnoDB;
+
+INSERT INTO users VALUES (1, 'user', 'user','1');
+INSERT INTO users VALUES (1, 'admin', 'admin','2');
 
 INSERT INTO roles VALUES (1, 'ROLE_USER');
 INSERT INTO roles VALUES (2, 'ROLE_ADMIN');
