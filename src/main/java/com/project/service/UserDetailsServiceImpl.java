@@ -37,11 +37,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         //проверка первого бита на true
         if((role&1) != 0)
-            roles.add(new SimpleGrantedAuthority("ROLE_USER"));
+            roles.add(new SimpleGrantedAuthority(UserRoleEnum.ROLE_USER.name()));
 
         //проверка второго бита на true
         if((role&2) != 0)
-            roles.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+            roles.add(new SimpleGrantedAuthority(UserRoleEnum.ROLE_ADMIN.name()));
 
         // на основании полученныйх даных формируем объект UserDetails
         // который позволит проверить введеный пользователем логин и пароль
