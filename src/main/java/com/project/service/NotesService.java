@@ -8,7 +8,7 @@ public interface NotesService {
 
     public Notes findByName(String name);
 
-    public Notes findByListName(String listname);
+    public Notes findByListId(Long id);
 
     public Notes save(Notes notes);
 

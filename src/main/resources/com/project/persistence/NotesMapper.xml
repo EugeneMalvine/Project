@@ -21,10 +21,10 @@
         WHERE name = #{name}
     </select>
 
-    <select id="findByListName" parameterType="String" resultMap="notesResultMap">
+    <select id="findByListId" parameterType="Long" resultMap="notesResultMap">
         SELECT ID,NAME,checkmark ,listname
         FROM notes
-        WHERE userlists = #{userlist}
+        WHERE id = #{id}
     </select>
 
     <insert id="insert" parameterType="Notes" useGeneratedKeys="true" keyProperty="id">

@@ -8,7 +8,7 @@ public interface NotesMapper {
 
     public Notes findByName(String name);
 
-    public Notes findByListName(String listname);
+    public Notes findByListId(Long id);
 
     public void insert(Notes notes);
 

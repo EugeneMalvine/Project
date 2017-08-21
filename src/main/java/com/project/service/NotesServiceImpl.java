@@ -29,8 +29,8 @@ public class NotesServiceImpl implements NotesService {
         return notes;
     }
 
-    public Notes findByListName(String listname) {
-        Notes notes = notesMapper.findByListName(listname);
+    public Notes findByListId(Long id) {
+        Notes notes = notesMapper.findByListId(id);
         return notes;
     }
 
