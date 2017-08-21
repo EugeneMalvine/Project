@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.persistence.ListsMapper">
+
+    <resultMap id="listsResultMap" type="Lists">
+        <id property="id" column="ID" />
+        <result property="Name" column="NAME" />
+        <result property="userlist" column="userlists" />
+    </resultMap>
+
+    <select id="findAll" resultMap="listsResultMap">
+        SELECT ID, name, userlists
+        FROM list
+    </select>
+
+    <select id="findByName" parameterType="String" resultMap="listsResultMap">
+        SELECT ID,NAME,userlists
+        FROM list
+        WHERE name = #{name}
+    </select>
+
+    <select id="findByUserId" parameterType="Long" resultMap="listsResultMap">
+        SELECT ID,NAME,userlists
+        FROM list
+        WHERE userlists = #{userlist}
+    </select>
+
+    <insert id="insert" parameterType="Lists" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO list (NAME, userlists)
+        VALUES (#{name}, #{userlist} )
+    </insert>
+
+    <update id="update" parameterType="Lists">
+        UPDATE list SET
+        NAME = #{name},
+        userlists = #{userlist}
+        WHERE ID = #{id}
+    </update>
+
+    <delete id="delete" parameterType="long">
+        DELETE FROM list WHERE ID = #{id}
+    </delete>
+
+
+</mapper>

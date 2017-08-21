@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.persistence.NotesMapper">
+
+    <resultMap id="notesResultMap" type="Notes">
+        <id property="id" column="ID" />
+        <result property="Name" column="NAME" />
+        <result property="checkmark" column="checkmark" />
+        <result property="listname" column="listname"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="notesResultMap">
+        SELECT ID, name, checkmark,listname
+        FROM notes
+    </select>
+
+    <select id="findByName" parameterType="String" resultMap="notesResultMap">
+        SELECT ID,NAME,checkmark,listname
+        FROM notes
+        WHERE name = #{name}
+    </select>
+
+    <select id="findByListName" parameterType="String" resultMap="notesResultMap">
+        SELECT ID,NAME,checkmark ,listname
+        FROM notes
+        WHERE userlists = #{userlist}
+    </select>
+
+    <insert id="insert" parameterType="Notes" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO notes (NAME, checkmark, listname)
+        VALUES (#{name}, #{checkmark},#{listname} )
+    </insert>
+
+    <update id="update" parameterType="Notes">
+        UPDATE notes SET
+        NAME = #{name},
+        checkmark = #{checkmark},
+        listname = #{listname}
+        WHERE ID = #{id}
+    </update>
+
+    <delete id="delete" parameterType="long">
+        DELETE FROM notes WHERE ID = #{id}
+    </delete>
+
+
+</mapper>
