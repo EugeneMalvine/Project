@@ -9,7 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration
+@ContextConfiguration(locations = "classpath:ApplicationContext.xml")
 public class UserServiceTest {
     @Configuration
     static class UserServiceTestContextConfiguration{
@@ -20,7 +20,7 @@ public class UserServiceTest {
     }
 
     @Autowired
-    private UserServiceImpl userService;
+    private UserService userService;
 
     @Test
     public void getUser() throws Exception {

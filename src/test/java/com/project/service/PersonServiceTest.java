@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
+import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration
+@ContextConfiguration(locations = "classpath:ApplicationContext.xml")
 public class PersonServiceTest {
     @Configuration
     static class PersonServiceTestContextConfiguration{
@@ -29,18 +30,19 @@ public class PersonServiceTest {
     }
 
     @Autowired
-    private PersonServiceImpl personService;
-    @Autowired
+    private PersonService personService;
+
     private PersonMapper personMapper;
 
     private Person expPerson = new Person();
 
     @Before
     public void setup(){
+
         expPerson.setId(1L);
         expPerson.setFirstName("firstname");
         expPerson.setLastName("lastname");
-        personService.setPersonMapper(personMapper);
+       // personService.setPersonMapper(personMapper);
 
     }
 

@@ -1,5 +1,6 @@
 package com.project.rest.config;
 
+import com.project.domain.enums.UserRoleEnum;
 import com.project.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
@@ -84,7 +85,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true);
 
         http.authorizeRequests()
-                .antMatchers("/**").access("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
+                .antMatchers("/**").access("hasAnyRole('"
+                + UserRoleEnum.ROLE_USER.name() + "','" + UserRoleEnum.ROLE_ADMIN.name() +  "')")
                 .and().formLogin().defaultSuccessUrl("/", false);
 
 

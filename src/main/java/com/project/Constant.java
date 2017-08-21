@@ -8,4 +8,7 @@ public class Constant{
     // где искать контроллеры и остальные компоненты
     public static final String COMPONENT_PACKAGE = "com.project";
     public static final String DISPATCHER_SERVLET_NAME = "dispatcher";
+
+    //размер страницы person
+    public static final int PERSON_PAGE_SIZE = 20;
 }

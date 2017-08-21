@@ -3,6 +3,28 @@ var prefix = '/functional';
 var collection = null;
 
 
+//запрос на получение страницы на сервер. Возвращает коллекцию элементов
+// в глобальную переменную collection
+var RestGetPageTest = function(page) {
+    $.ajax({
+        type: 'GET',
+        url: prefix + '/',
+        dataType: 'json',
+        data: {
+            "page": page
+        },
+        async: true,
+        success: function(result) {
+            alert(result.data + ' ' + result.currentPage + ' ' + result.ammountOfPage + ' ' +
+            result.ammountOfPerson + ' ' + result.pageSize);
+
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert(jqXHR.status + ' ' + jqXHR.responseText + ' ' + textStatus + errorThrown);
+        }
+    });
+}
+
     //функция обновляет таблицу в соответствии с коллекцией
     var UpdateTable = function(collection){
         var tbl = '<tr>';

@@ -16,7 +16,7 @@ import java.util.Set;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration
+@ContextConfiguration(locations = "classpath:ApplicationContext.xml")
 public class UserDetailsServiceTest {
     @Configuration
     static class UserDetailsServiceTestContextConfiguration{
@@ -33,13 +33,14 @@ public class UserDetailsServiceTest {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
+
     @Test
     public void loadUserByUsername() throws Exception {
         String expLogin = "user";
         String expPassword = "user";
         Set<GrantedAuthority> expRoles = new HashSet();
 
-        expRoles.add(new SimpleGrantedAuthority(UserRoleEnum.USER.name()));
+        expRoles.add(new SimpleGrantedAuthority(UserRoleEnum.ROLE_USER.name()));
         UserDetails userDetails = userDetailsService.loadUserByUsername(expLogin);
 
         Assert.assertEquals(expLogin, userDetails.getUsername());

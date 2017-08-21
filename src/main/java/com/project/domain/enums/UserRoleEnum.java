@@ -5,8 +5,8 @@ package com.project.domain.enums;
  */
 public enum UserRoleEnum {
 
-    ADMIN,
-    USER,
+    ROLE_ADMIN,
+    ROLE_USER,
     ANONYMOUS;
 
     UserRoleEnum() {

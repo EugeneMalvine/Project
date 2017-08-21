@@ -1,5 +1,7 @@
 package com.project.rest.controller;
 
+import com.project.Constant;
+import com.project.domain.response.PersonPageResponse;
 import com.project.service.PersonService;
 import com.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,19 @@ public class WorkController {
     @Autowired
     private PersonService personMapper;
 
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    public PersonPageResponse getPage(@RequestParam("page") int page){
+        PersonPageResponse response = new PersonPageResponse();
+
+        response.data = personMapper.findRange(Constant.PERSON_PAGE_SIZE * page,Constant.PERSON_PAGE_SIZE);
+        response.ammountOfPage = response.data.size() == 0 ? 0 : (response.data.size() -1) /  Constant.PERSON_PAGE_SIZE + 1;
+        response.ammountOfPerson = personMapper.findAll().size();
+        response.currentPage = page;
+        response.pageSize = Constant.PERSON_PAGE_SIZE;
+
+        return response;
+    }
+
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<Person> getUsers() {
@@ -41,7 +56,7 @@ public class WorkController {
     public void deleteContact(@RequestBody String id) {
 
         try {
-            Long n_id = Long.parseLong(id ,10);
+            Long n_id = Long.parseLong(id );
             Person toFind = personMapper.findById(n_id);
             if( toFind != null)
                 personMapper.delete(toFind);
