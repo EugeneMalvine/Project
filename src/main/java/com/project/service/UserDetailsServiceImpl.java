@@ -31,27 +31,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user = userService.getUser(email);
         if(user == null)
             return null;
-        // указываем роли для этого пользователя
-        Set<GrantedAuthority> roles = new HashSet();
-        int role = user.getRole();
 
-        //проверка первого бита на true
-        if((role&1) != 0)
-            roles.add(new SimpleGrantedAuthority(UserRoleEnum.ROLE_USER.name()));
-
-        //проверка второго бита на true
-        if((role&2) != 0)
-            roles.add(new SimpleGrantedAuthority(UserRoleEnum.ROLE_ADMIN.name()));
-
-        // на основании полученныйх даных формируем объект UserDetails
-        // который позволит проверить введеный пользователем логин и пароль
-        // и уже потом аутентифицировать пользователя
-        UserDetails userDetails =
-                new org.springframework.security.core.userdetails.User(user.getLogin(),
-                        user.getPassword(),
-                        roles);
-
-        return userDetails;
+        return user;
     }
 
 }

@@ -19,7 +19,7 @@ public class UserSample {
 		User user = userService.getUser("user");
 
 		User newUser = new User();
-		newUser.setLogin("11111");
+		newUser.setUsername("11111");
 		newUser.setPassword("123123123");
 		newUser.setRole(3);
 

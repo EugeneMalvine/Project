@@ -1,1 +1,1 @@
-DROP table IF EXISTS users,userlist
+DROP table IF EXISTS users,userlist,list,notes

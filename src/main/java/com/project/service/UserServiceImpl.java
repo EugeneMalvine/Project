@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user) {
-        User temp = userMapper.findByName(user.getLogin());
+        User temp = userMapper.findByName(user.getUsername());
         //if user exist
         if(temp != null)
         {
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
             return null;
         }
         userMapper.insert(user);
-        return userMapper.findByName(user.getLogin());
+        return userMapper.findByName(user.getUsername());
     }
 
     @Override

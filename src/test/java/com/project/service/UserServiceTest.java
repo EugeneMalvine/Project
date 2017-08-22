@@ -29,7 +29,7 @@ public class UserServiceTest {
         
         User user = userService.getUser(expLogin);
 
-        Assert.assertEquals(expLogin, user.getLogin());
+        Assert.assertEquals(expLogin, user.getUsername());
         Assert.assertEquals(expPassword, user.getPassword());
     }
 
