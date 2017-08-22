@@ -9,7 +9,7 @@ public interface ListsMapper {
 
     public Lists findByName(String name);
 
-    public Lists findByUserId(Long userlist);
+    public List<Lists> findByUserId(Long userlist);
 
     public void insert(Lists lists);
 

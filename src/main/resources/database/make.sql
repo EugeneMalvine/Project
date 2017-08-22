@@ -20,10 +20,10 @@ CREATE TABLE list (
 )
   ENGINE = InnoDB;
 
-CREATE TABLE notes (
-  id       INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
-  checkmark INT(11) NOT NULL,
-  listname VARCHAR(255) NOT NULL
-)
-  ENGINE = InnoDB;
+CREATE TABLE `notes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `checkmark` int(11) NOT NULL,
+  `listsid` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1

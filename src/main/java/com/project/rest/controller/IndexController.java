@@ -18,4 +18,9 @@ public class IndexController {
     public String loginPage(Model model){
         return "login";
     }
+
+    @RequestMapping(value ="cabinet" ,method = RequestMethod.GET)
+    public String cabinetPage(Model model){
+        return "cabinet";
+    }
 }

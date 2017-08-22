@@ -5,7 +5,7 @@
 
     <resultMap id="listsResultMap" type="Lists">
         <id property="id" column="ID" />
-        <result property="Name" column="NAME" />
+        <result property="name" column="NAME" />
         <result property="userlist" column="userlists" />
     </resultMap>
 

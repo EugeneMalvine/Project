@@ -1,5 +1,6 @@
 package com.project.service;
 import com.project.domain.Lists;
+import com.project.domain.User;
 import com.project.persistence.ListsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service("listsService")
@@ -28,8 +30,8 @@ public class ListsServiceImpl implements ListsService {
         return lists;
     }
 
-    public Lists findByUserId(Long userlist) {
-        Lists lists = listsMapper.findByUserId(userlist);
+    public List<Lists> findByUserId(Long userlist) {
+        List<Lists> lists = listsMapper.findByUserId(userlist);
         return lists;
     }
 
@@ -54,11 +56,21 @@ public class ListsServiceImpl implements ListsService {
 
     public void delete(Lists lists) {
         Long listsId = lists.getId();
-        listsMapper.delete(listsId);
+        delete(listsId);
+    }
+
+    public void delete(Long id){
+        listsMapper.delete(id);
+    }
+
+    public boolean checkAuthority(User user, Long id){
+        List<Long> mayAccess =  findByUserId(user.getId()).stream().map((Lists it) -> it.getId()).collect(Collectors.toList());
+        //если текущий юзер не имеет права получать записи из этого списка кидаем исключение
+        return mayAccess.contains(id);
     }
 
     public void clear(){
-        List<Lists> listss = listsMapper.findAll();
+        List<Lists> listss = findAll();
         for (int i=0;i < listss.size();i++) {
             delete(listss.get(i));
         }

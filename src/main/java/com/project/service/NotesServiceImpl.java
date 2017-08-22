@@ -1,7 +1,9 @@
 package com.project.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.project.domain.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -29,8 +31,13 @@ public class NotesServiceImpl implements NotesService {
         return notes;
     }
 
-    public Notes findByListId(Long id) {
-        Notes notes = notesMapper.findByListId(id);
+    public List<Notes> findByListId(Long id){
+        List<Notes> notes = notesMapper.findByListId(id);
+        return notes;
+    }
+
+    public Notes findById(Long id){
+        Notes notes = notesMapper.findById(id);
         return notes;
     }
 
@@ -43,19 +50,28 @@ public class NotesServiceImpl implements NotesService {
         return notes;
     }
 
-    private Notes insert(Notes notes) {
+    public Notes insert(Notes notes) {
         notesMapper.insert(notes);
         return notes;
     }
 
-    private Notes update(Notes notes) {
+    public Notes update(Notes notes) {
         notesMapper.update(notes);
         return notes;
     }
 
     public void delete(Notes notes) {
         Long notesId = notes.getId();
-        notesMapper.delete(notesId);
+        delete(notesId);
+    }
+
+    public void delete(Long id){
+        notesMapper.delete(id);
+    }
+
+    public boolean contains(Long id,Long n_id){
+        List<Long> idCollection =  findByListId(id).stream().map((Notes it) -> it.getId()).collect(Collectors.toList());
+        return idCollection.contains(n_id);
     }
 
     public void clear(){

@@ -8,9 +8,10 @@ public class Notes implements Serializable {
 
     private String name;
 
-    private Long checkmark;
+    private Boolean checkmark;
 
-    private String listsname;
+
+    private int listsid;
 
     public Long getId() {
         return id;
@@ -28,20 +29,21 @@ public class Notes implements Serializable {
         this.name = name;
     }
 
-    public Long getCheckmark() {
+    public Boolean getCheckmark() {
         return checkmark;
     }
 
-    public void setCheckmark(Long checkmark) {
+    public void setCheckmark(Boolean checkmark) {
         this.checkmark = checkmark;
     }
 
-    public String getListsname() {
-        return listsname;
+
+    public int getListsid() {
+        return listsid;
     }
 
-    public void setListsname(String listsname) {
-        this.listsname = listsname;
+    public void setListsid(int listsid) {
+        this.listsid = listsid;
     }
 
     @Override
@@ -50,7 +52,7 @@ public class Notes implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", checkmark=" + checkmark +
-                ", listsname='" + listsname + '\'' +
+                ", listsname='" + listsid + '\'' +
                 '}';
     }
 }

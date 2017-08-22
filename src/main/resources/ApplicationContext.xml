@@ -81,6 +81,23 @@
         <property name="userService" ref="userService"/>
     </bean>
 
+    <bean id="listsMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" autowire="byType">
+        <property name="mapperInterface" value="com.project.persistence.ListsMapper" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+
+    <bean id="listsService" class="com.project.service.ListsServiceImpl">
+        <property name="listsMapper" ref="listsMapper"/>
+    </bean>
+
+    <bean id="notesMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" autowire="byType">
+        <property name="mapperInterface" value="com.project.persistence.NotesMapper" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+
+    <bean id="notesService" class="com.project.service.NotesServiceImpl">
+        <property name="notesMapper" ref="notesMapper"/>
+    </bean>
 
 
 </beans>

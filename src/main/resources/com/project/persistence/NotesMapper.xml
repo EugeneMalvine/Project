@@ -5,38 +5,44 @@
 
     <resultMap id="notesResultMap" type="Notes">
         <id property="id" column="ID" />
-        <result property="Name" column="NAME" />
+        <result property="name" column="NAME" />
         <result property="checkmark" column="checkmark" />
-        <result property="listname" column="listname"/>
+        <result property="listsid" column="listsid"/>
     </resultMap>
 
     <select id="findAll" resultMap="notesResultMap">
-        SELECT ID, name, checkmark,listname
+        SELECT *
         FROM notes
     </select>
 
     <select id="findByName" parameterType="String" resultMap="notesResultMap">
-        SELECT ID,NAME,checkmark,listname
+        SELECT *
         FROM notes
         WHERE name = #{name}
     </select>
 
     <select id="findByListId" parameterType="Long" resultMap="notesResultMap">
-        SELECT ID,NAME,checkmark ,listname
+        SELECT *
+        FROM notes
+        WHERE listsid = #{listsid}
+    </select>
+
+    <select id="findById" parameterType="Long" resultMap="notesResultMap">
+        SELECT *
         FROM notes
         WHERE id = #{id}
     </select>
 
     <insert id="insert" parameterType="Notes" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO notes (NAME, checkmark, listname)
-        VALUES (#{name}, #{checkmark},#{listname} )
+        INSERT INTO notes (NAME, checkmark, listsid)
+        VALUES (#{name}, #{checkmark},#{listsid} )
     </insert>
 
     <update id="update" parameterType="Notes">
         UPDATE notes SET
         NAME = #{name},
         checkmark = #{checkmark},
-        listname = #{listname}
+        listsid = #{listsid}
         WHERE ID = #{id}
     </update>
 
