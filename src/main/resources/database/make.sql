@@ -26,4 +26,15 @@ CREATE TABLE `notes` (
   `checkmark` int(11) NOT NULL,
   `listsid` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `contact` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `firstname` VARCHAR(255) NOT NULL,
+  `lastname` VARCHAR(255) NOT NULL,
+  `birthday` VARCHAR(255) NOT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `userid` INT(11) NOT NULL ,
+  PRIMARY KEY (`id`))
+  ENGINE = InnoDB
+  DEFAULT CHARACTER SET = utf8;

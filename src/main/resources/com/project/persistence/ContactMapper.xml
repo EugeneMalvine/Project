@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.persistence.ContactMapper">
+
+    <resultMap id="contactResultMap" type="Contact">
+        <id property="id" column="ID" />
+        <result property="firstname" column="firstname" />
+        <result property="lastname" column="lastname" />
+        <result property="birthday" column="birthday"/>
+        <result property="email" column="email"/>
+        <result property="userid" column="userid"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="contactResultMap">
+        SELECT ID,firstname , lastname,birthday,email,userid
+        FROM contact
+    </select>
+
+    <select id="findByUserId" parameterType="Long" resultMap="contactResultMap">
+        SELECT ID,firstname,lastname,birthday,email,userid
+        FROM contact
+        WHERE userid = #{userid}
+    </select>
+
+    <insert id="insert" parameterType="Contact" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO contact (firstname, lastname,birthday,email,userid)
+        VALUES (#{firstname}, #{lastname}, #{birthday}, #{email}, #{userid} )
+    </insert>
+
+    <update id="update" parameterType="Contact">
+        UPDATE contact SET
+        userid = #{userid},
+        firstname = #{firstname}
+        WHERE ID = #{id}
+    </update>
+
+    <delete id="delete" parameterType="long">
+        DELETE FROM contact WHERE ID = #{id}
+    </delete>
+
+
+</mapper>

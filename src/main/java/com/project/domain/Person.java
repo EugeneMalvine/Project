@@ -5,7 +5,9 @@ import java.io.Serializable;
 public class Person implements Serializable {
 
     private Long id;
+
     private String firstName;
+
     private String lastName;
 
     public Long getId() {
