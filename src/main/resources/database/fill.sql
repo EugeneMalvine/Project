@@ -1,6 +1,6 @@
-INSERT INTO users VALUES (1, 'user', 'user','1');
-INSERT INTO users VALUES (2, 'admin', 'admin','2');
-INSERT INTO users VALUES (3, 'su', 'su','3');
+INSERT INTO users VALUES (1, 'user', '12dea96fec20593566ab75692c9949596833adc9','1');
+INSERT INTO users VALUES (2, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997','2');
+INSERT INTO users VALUES (3, 'su', '363eb224f6ff8d3c5163a8805222acbf939a65b3','3');
 
 INSERT INTO userlist VALUES (1,'Layla', 'Roberts');
 INSERT INTO userlist VALUES (2,'Layla', 'Roberts');
