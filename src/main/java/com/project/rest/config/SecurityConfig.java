@@ -1,6 +1,6 @@
 package com.project.rest.config;
 /*
-Добавлена поддержка хеширования паролей по алгоритму SHA1
+Добавлена поддержка кеширования паролей по алгоритму SHA1
 * */
 import com.project.domain.enums.UserRoleEnum;
 import com.project.service.UserDetailsServiceImpl;
