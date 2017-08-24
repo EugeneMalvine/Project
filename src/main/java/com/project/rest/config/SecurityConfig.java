@@ -1,5 +1,7 @@
 package com.project.rest.config;
-
+/*
+Добавлена поддержка кеширования паролей по алгоритму SHA1
+* */
 import com.project.domain.enums.UserRoleEnum;
 import com.project.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -38,8 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void registerGlobalAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .userDetailsService(userDetailsService);
-               // .passwordEncoder(getShaPasswordEncoder());
+                .userDetailsService(userDetailsService)
+                .passwordEncoder(getShaPasswordEncoder());
     }
    /* @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -88,10 +90,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**").access("hasAnyRole('"
                 + UserRoleEnum.ROLE_USER.name() + "','" + UserRoleEnum.ROLE_ADMIN.name() +  "')")
                 .and().formLogin().defaultSuccessUrl("/", false);
+    }
 
-
-
-
+    @Bean
+    ShaPasswordEncoder getShaPasswordEncoder(){
+        return new ShaPasswordEncoder();
     }
 
 
