@@ -23,7 +23,7 @@
     <script type="text/javascript"> <%@include file="js/functional.js"%> </script>
 
 </head>
-<body onload="RestGet()" >
+<body onload="Load()" >
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -34,7 +34,6 @@
     </nav>
 
     <div class="container">
-
         <sec:authorize access="hasRole('ROLE_ADMIN')">
             <h3>Admin: </h3>
         </sec:authorize>
@@ -61,7 +60,7 @@
             <table class="table table-striped">
                 <thead>
                 <tr class="active">
-                    <th>id</th>
+
                     <th>Name</th>
                     <th>Last name</th>
                     <th></th>
@@ -72,6 +71,7 @@
                 </tbody>
 
             </table>
+            <ul class="pagination" id="MyPager" onload="RestGetPageTest()"></ul>
 
 
         </div>

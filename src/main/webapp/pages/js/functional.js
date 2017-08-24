@@ -1,68 +1,29 @@
 
 var prefix = '/functional';
 var collection = null;
-
-
-//запрос на получение страницы на сервер. Возвращает коллекцию элементов
-// в глобальную переменную collection
-var RestGetPageTest = function(page) {
-    $.ajax({
-        type: 'GET',
-        url: prefix + '/',
-        dataType: 'json',
-        data: {
-            "page": page
-        },
-        async: true,
-        success: function(result) {
-            alert(result.data + ' ' + result.currentPage + ' ' + result.ammountOfPage + ' ' +
-            result.ammountOfPerson + ' ' + result.pageSize);
-
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            alert(jqXHR.status + ' ' + jqXHR.responseText + ' ' + textStatus + errorThrown);
-        }
-    });
-}
+var curPage = 0;
+var user = null;
 
     //функция обновляет таблицу в соответствии с коллекцией
     var UpdateTable = function(collection){
+
         var tbl = '<tr>';
         for(var i = 0; i < collection.length; i++){
-            tbl += '<td> ' + collection[i].id + ' </td>';
             tbl += '<td> ' + collection[i].firstName + ' </td>';
-            tbl += '<td> ' + collection[i].lastName + ' </td>'
-            <sec:authorize access="hasRole('ROLE_ADMIN')">
-                tbl += '<td>' +  '<button type="reset" class="btn btn-danger" onclick=RestDelete("' +
-                    collection[i].id + '")><span class="glyphicon glyphicon-remove"></span>Delete</button>' + '</td>';
-            </sec:authorize>
-            <sec:authorize access="hasRole('ROLE_USER')">
+            tbl += '<td> ' + collection[i].lastName + ' </td>';
+
+            if((user.role&2) != 0) {
+                tbl += '<td>' + '<button type="reset" class="btn btn-danger" onclick=RestDelete("' +
+                    collection[i].id + '")><span class="glyphicon glyphicon-remove"></span> Del</button>' + '</td>';
+            }
+            else if((user.role&1) != 0) {
                 tbl += '<td></td>';
-            </sec:authorize>
+            }
 
             tbl += '</tr><tr>';
         }
         tbl += '</tr>';
         document.getElementById("table").innerHTML = tbl;
-    }
-
-    //запрос на получение на сервер. Возвращает коллекцию элементов
-    // в глобальную переменную collection
-    var RestGet = function() {
-        $.ajax({
-            type: 'GET',
-            url: prefix,
-            dataType: 'json',
-            async: true,
-            success: function(result) {
-                collection = result;
-                UpdateTable(collection);
-
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                alert(jqXHR.status + ' ' + jqXHR.responseText + ' ' + textStatus + errorThrown);
-            }
-        });
     }
 
     //обработчик кнопки добавить.
@@ -80,7 +41,7 @@ var RestGetPageTest = function(page) {
             dataType: 'text',
             async: true,
             success: function(result) {
-                RestGet();
+                Update();
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert(jqXHR.status + ' ' + jqXHR.responseText + ' ' + textStatus + ' ' + errorThrown);
@@ -98,7 +59,7 @@ var RestGetPageTest = function(page) {
         data: id,
         async: true,
         success : function(result){
-            RestGet();
+            Update();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             alert(jqXHR.status + ' ' + jqXHR.responseText);
@@ -107,5 +68,73 @@ var RestGetPageTest = function(page) {
 }
 
 
+//запрос на получение страницы на сервер. Возвращает коллекцию элементов
+// в глобальную переменную collection
+var Update = function() {
+    $.ajax({
+        type: 'GET',
+        url: prefix + '/',
+        dataType: 'json',
+        data: {
+            "page": curPage
+        },
+        async: true,
+        success: function(result) {
 
+            var str='<li>';
+
+            for(var i =0; i<result.ammountOfPage; i++){
+
+                str+='<a href = "#" onclick="RestPagination('+i+')">'+i+'</a>';
+                str+='</li>';
+                str+='<li>';
+            }
+            str+='</li>';
+            document.getElementById("MyPager").innerHTML = str;
+            RestPagination(curPage);
+
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert(jqXHR.status + ' ' + jqXHR.responseText + ' ' + textStatus + errorThrown);
+        }
+    });
+}
+//запрос на удаление id из бд
+var RestPagination = function(page) {
+    $.ajax({
+        type: 'GET',
+        url:  prefix + '/',
+        dataType: 'json',
+        data: {
+            "page": page
+        },
+        async: true,
+        success : function(result){
+            UpdateTable(result.data);
+            curPage = result.currentPage;
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert(jqXHR.status + ' ' + jqXHR.responseText);
+        }
+    });
+}
+
+var GetCredential = function() {
+    $.ajax({
+        type: 'GET',
+        url:  '/service/credential',
+        async: true,
+        success : function(result){
+            user = result;
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert(jqXHR.status + ' ' + jqXHR.responseText);
+        }
+    });
+}
+
+var Load = function() {
+        GetCredential();
+        Update();
+}
 

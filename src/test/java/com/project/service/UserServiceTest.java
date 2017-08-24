@@ -25,7 +25,7 @@ public class UserServiceTest {
     @Test
     public void getUser() throws Exception {
         String expLogin = "user";
-        String expPassword = "user";
+        String expPassword = "12dea96fec20593566ab75692c9949596833adc9";
         
         User user = userService.getUser(expLogin);
 

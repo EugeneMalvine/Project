@@ -46,7 +46,7 @@ public class PersonServiceTest {
 
     }
 
-    @Test
+   // @Test
     public void findAll() throws Exception {
         List<Person> expPersons =  new ArrayList<>();
         expPersons.add(expPerson);
@@ -56,7 +56,7 @@ public class PersonServiceTest {
         Assert.assertEquals(expPersons,persons);
     }
 
-    @Test
+ //   @Test
     public void findById(){
         Mockito.when(personMapper.findById(expPerson.getId())).thenReturn(expPerson);
         Person person = personService.findById(expPerson.getId());

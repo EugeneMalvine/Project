@@ -29,9 +29,10 @@ public class WorkController {
     public PersonPageResponse getPage(@RequestParam("page") int page){
         PersonPageResponse response = new PersonPageResponse();
 
-        response.data = personMapper.findRange(Constant.PERSON_PAGE_SIZE * page,Constant.PERSON_PAGE_SIZE);
-        response.ammountOfPage = response.data.size() == 0 ? 0 : (response.data.size() -1) /  Constant.PERSON_PAGE_SIZE + 1;
         response.fullSize = personMapper.findAll().size();
+        response.data = personMapper.findRange(Constant.PERSON_PAGE_SIZE * page,Constant.PERSON_PAGE_SIZE);
+        response.ammountOfPage = response.data.size() == 0 ? 0 : (response.fullSize -1) /  Constant.PERSON_PAGE_SIZE + 1;
+
         response.currentPage = page;
         response.pageSize = Constant.PERSON_PAGE_SIZE;
 

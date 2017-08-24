@@ -9,17 +9,34 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.validation.constraints.*;
+
+import static javax.swing.text.StyleConstants.Size;
+
 /**
  * Created by Denis on 13.08.2017.
  */
 public class User implements UserDetails {
 
+    @NotNull
+    @Size(min=3,max=16)
     private String login;
+
+    @NotNull
+    @Size(min=7,max=32)
     private String password;
+
+    @Null
     private long id;
+
+    @NotNull
     private int role;
 
-      public User(String login, String password, int role) {
+    @NotNull
+    @Size(min=7,max=32)
+    private String confirmPassword;
+
+    public User(String login, String password, int role) {
         this.login = login;
         this.password = password;
         this.role = role;
@@ -29,6 +46,13 @@ public class User implements UserDetails {
 
     }
 
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
 
     public long getId() {
         return id;

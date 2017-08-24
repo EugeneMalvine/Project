@@ -37,7 +37,7 @@ public class UserDetailsServiceTest {
     @Test
     public void loadUserByUsername() throws Exception {
         String expLogin = "user";
-        String expPassword = "user";
+        String expPassword = "12dea96fec20593566ab75692c9949596833adc9";
         Set<GrantedAuthority> expRoles = new HashSet();
 
         expRoles.add(new SimpleGrantedAuthority(UserRoleEnum.ROLE_USER.name()));
