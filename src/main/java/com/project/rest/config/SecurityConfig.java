@@ -88,14 +88,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/**").access("hasAnyRole('"
-                + UserRoleEnum.ROLE_USER.name() + "','" + UserRoleEnum.ROLE_ADMIN.name() +  "')")
+                + UserRoleEnum.ROLE_USER.name() + "','" + UserRoleEnum.ROLE_ADMIN.name() + "')")
                 .and().formLogin().defaultSuccessUrl("/", false);
+    }
 
     @Bean
-    ShaPasswordEncoder getShaPasswordEncoder(){
+    ShaPasswordEncoder getShaPasswordEncoder() {
         return new ShaPasswordEncoder();
     }
 
 
 }
+
 
