@@ -1,5 +1,6 @@
 package com.project.service;
 
+import com.project.domain.Contact;
 import com.project.domain.Person;
 import com.project.persistence.PersonMapper;
 import org.junit.*;
@@ -17,57 +18,78 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:ApplicationContext.xml")
 public class PersonServiceTest {
-    @Configuration
-    static class PersonServiceTestContextConfiguration{
-        @Bean
-        public PersonServiceImpl personService(){
-            return new PersonServiceImpl();
-        }
-        @Bean
-        public PersonMapper personMapper(){
-            return Mockito.mock(PersonMapper.class);
-        }
-    }
 
     @Autowired
     private PersonService personService;
 
-    private PersonMapper personMapper;
 
-    private Person expPerson = new Person();
-
-    @Before
-    public void setup(){
-
-        expPerson.setId(1L);
-        expPerson.setFirstName("firstname");
-        expPerson.setLastName("lastname");
-       // personService.setPersonMapper(personMapper);
-
-    }
-
-   // @Test
-    public void findAll() throws Exception {
-        List<Person> expPersons =  new ArrayList<>();
-        expPersons.add(expPerson);
-        Mockito.when(personMapper.findAll()).thenReturn(expPersons);
-        List<Person> persons =  personService.findAll();
-
-        Assert.assertEquals(expPersons,persons);
-    }
-
- //   @Test
+    @Test
     public void findById(){
-        Mockito.when(personMapper.findById(expPerson.getId())).thenReturn(expPerson);
-        Person person = personService.findById(expPerson.getId());
 
-        Assert.assertSame(expPerson,person);
+        Person person = personService.findById(-1l);
+
+        Assert.assertEquals(person.getId(),new Long(-1l));
+
+    }
+
+
+    @Test
+    public void findAll() {
+
+        Long size = new Long(personService.findAll().size());
+
+        Assert.assertEquals(size,personService.size());
+
     }
 
     @Test
-    public void save() throws Exception {
-        Person person = personService.save(expPerson);
+    public void delete(){
+        Person person = new Person();
+        person.setFirstName("Test");
+        person.setLastName("Test");
 
-        Assert.assertSame(expPerson, person);
+        personService.insert(person);
+
+        Person person2 = personService.findById(person.getId());
+
+        Assert.assertEquals(person.getId(),person2.getId());
+
+        personService.delete(person.getId());
+
+        person2 = personService.findById(person.getId());
+
+        Assert.assertNull(person2);
+    }
+
+    @Test
+    public void update(){
+        Person person = new Person();
+        person.setFirstName("Test");
+        person.setLastName("Test");
+
+        personService.insert(person);
+
+        Person person2 = personService.findById(person.getId());
+
+        Assert.assertEquals(person.getId(),person2.getId());
+
+        person2.setFirstName("Updated");
+
+        personService.update(person2);
+
+        person2 = personService.findById(person.getId());
+
+        Assert.assertEquals(person2.getFirstName(),"Updated");
+
+        person2.setId(100l);
+
+        personService.update(person2);
+
+        person2 = personService.findById(person.getId());
+
+        Assert.assertEquals(person.getId(),person2.getId());
+
+        personService.delete(person.getId());
+        personService.delete(person2.getId());
     }
 }

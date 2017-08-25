@@ -2,7 +2,7 @@ package com.project.domain;
 
 import java.io.Serializable;
 
-public class Lists implements Serializable {
+public class Lists implements Serializable,IEntity {
 
     private Long id;
 
@@ -26,11 +26,11 @@ public class Lists implements Serializable {
         this.name = name;
     }
 
-    public Long getUser() {
+    public Long getUserId() {
         return userlist;
     }
 
-    public void setUser(Long user) {
+    public void setUserId(Long user) {
         this.userlist = user;
     }
 

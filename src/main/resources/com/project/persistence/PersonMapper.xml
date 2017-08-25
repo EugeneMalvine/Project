@@ -42,5 +42,12 @@
         DELETE FROM userlist WHERE ID = #{id}
     </delete>
 
+    <select id="size" resultType="Long">
+        SELECT COUNT(*) FROM userlist
+    </select>
+
+    <delete id="clear">
+        DELETE FROM userlist
+    </delete>
     
 </mapper>

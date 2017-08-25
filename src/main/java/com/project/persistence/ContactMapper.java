@@ -1,16 +1,20 @@
 package com.project.persistence;
 
 import com.project.domain.Contact;
+import com.project.domain.Notes;
+import com.project.persistence.base.IMapper;
+
 import java.util.List;
 
-public interface ContactMapper {
-    public List<Contact> findAll();
+/**
+ * Интерфейс для работы с бд contact
+ */
 
-    public List<Contact> findByUserId(Long userid);
-
-    public void insert(Contact lists);
-
-    public void update(Contact lists);
-
-    public void delete(Long id);
+public interface ContactMapper extends IMapper<Contact> {
+    /**
+     * Получить контактную информацию выбранного пользователя
+     * @param id: id пользователя, контактную информацию которого ищем
+     * @return контактная информация пользователя
+     */
+    public Contact findByUserId(Long id);
 }

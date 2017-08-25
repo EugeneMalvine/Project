@@ -15,11 +15,12 @@ public class PageResponse<T> {
     //номер текущей страницы
     public int currentPage;
     //количество страниц
-    public int ammountOfPage;
+    public Long ammountOfPage;
     //количество данных в бд
-    public int fullSize;
+    public Long fullSize;
     //размер страницы
     public int pageSize;
+
 
 
 }

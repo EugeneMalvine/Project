@@ -4,28 +4,17 @@ package com.project.service;
 import java.util.List;
 import com.project.domain.Lists;
 import com.project.domain.User;
+import com.project.service.base.IDBService;
 
-public interface ListsService {
+public interface ListsService extends IDBService<Lists> {
 
+    Lists findByName(String name);
 
-    public List<Lists> findAll();
-
-    public Lists findByName(String name);
-
-    public List<Lists> findByUserId(Long userlist);
-
-    public Lists save(Lists lists);
-
-    public void delete(Lists lists);
-
-    public void delete(Long id);
+    List<Lists> findByUserId(Long userlist);
 
     //имеет ли user права на список id
-    public boolean checkAuthority(User user, Long id);
+    boolean checkAuthority(User user, Long id);
 
-    //To clear collections
-    public void clear();
-
-
+    void deepDelete(Long id);
 
 }

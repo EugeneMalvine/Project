@@ -44,7 +44,7 @@ public class TodoController {
         User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Long n_id = Long.parseLong(id);
 
-        listsService.delete(n_id);
+        listsService.deepDelete(n_id);
         return n_id;
     }
 
@@ -55,7 +55,7 @@ public class TodoController {
 
         Lists list = new Lists();
         list.setName(name);
-        list.setUser(user.getId());
+        list.setUserId(user.getId());
 
         list = listsService.save(list);
         return list;
@@ -85,7 +85,7 @@ public class TodoController {
         Notes note = new Notes();
         note.setName(desc);
         note.setCheckmark(false);
-        note.setListsid((int)id);
+        note.setListsid(id);
 
         note = notesService.save(note);
         return note;

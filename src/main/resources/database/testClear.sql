@@ -1,0 +1,4 @@
+DELETE FROM list WHERE ID = -1;
+DELETE FROM contact WHERE ID = -1;
+DELETE FROM notes WHERE ID = -1;
+DELETE FROM userlist WHERE ID = -1;

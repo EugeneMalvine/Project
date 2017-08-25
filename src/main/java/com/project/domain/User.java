@@ -16,7 +16,7 @@ import static javax.swing.text.StyleConstants.Size;
 /**
  * Created by Denis on 13.08.2017.
  */
-public class User implements UserDetails {
+public class User implements UserDetails,IEntity {
 
     @NotNull
     @Size(min=3,max=16)
@@ -54,11 +54,11 @@ public class User implements UserDetails {
         this.confirmPassword = confirmPassword;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

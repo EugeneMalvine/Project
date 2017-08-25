@@ -17,10 +17,17 @@
         FROM contact
     </select>
 
+    <select id="findById" parameterType="Long" resultMap="contactResultMap">
+        SELECT *
+        FROM contact
+        WHERE ID = #{id}
+    </select>
+
     <select id="findByUserId" parameterType="Long" resultMap="contactResultMap">
-        SELECT ID,firstname,lastname,birthday,email,userid
+        SELECT *
         FROM contact
         WHERE userid = #{userid}
+        LIMIT 1
     </select>
 
     <insert id="insert" parameterType="Contact" useGeneratedKeys="true" keyProperty="id">
@@ -38,6 +45,21 @@
     <delete id="delete" parameterType="long">
         DELETE FROM contact WHERE ID = #{id}
     </delete>
+
+    <select id="findRange" parameterType="int" resultMap="contactResultMap">
+        SELECT *
+        FROM contact
+        LIMIT #{param1},#{param2}
+    </select>
+
+    <select id="size" resultType="Long">
+        SELECT COUNT(*) FROM contact
+    </select>
+
+    <delete id="clear">
+        DELETE FROM contact
+    </delete>
+
 
 
 </mapper>

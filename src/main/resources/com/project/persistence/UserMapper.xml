@@ -15,6 +15,25 @@
         FROM users
         WHERE username = #{username}
     </select>
+
+    <select id="findById" parameterType="Long" resultMap="userResultMap">
+        SELECT *
+        FROM users
+        WHERE id = #{id}
+    </select>
+
+    <update id="update" parameterType="User">
+        UPDATE users SET
+        login = #{login},
+        password = #{password},
+        role = #{role}
+        WHERE ID = #{id}
+    </update>
+
+    <select id="findAll" resultMap="userResultMap">
+        SELECT *
+        FROM users
+    </select>
     
     <insert id="insert" parameterType="User" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO users (username,password,role)
@@ -23,6 +42,20 @@
 
     <delete id="delete" parameterType="long">
         DELETE FROM users WHERE id = #{id}
+    </delete>
+
+    <select id="findRange" parameterType="int" resultMap="userResultMap">
+        SELECT *
+        FROM users
+        LIMIT #{param1},#{param2}
+    </select>
+
+    <select id="size" resultType="Long">
+        SELECT COUNT(*) FROM users
+    </select>
+
+    <delete id="clear">
+        DELETE FROM users
     </delete>
 
     

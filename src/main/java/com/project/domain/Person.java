@@ -2,7 +2,7 @@ package com.project.domain;
 
 import java.io.Serializable;
 
-public class Person implements Serializable {
+public class Person implements Serializable,IEntity {
 
     private Long id;
 

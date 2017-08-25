@@ -2,6 +2,7 @@ package com.project.service;
 import com.project.domain.Lists;
 import com.project.domain.User;
 import com.project.persistence.ListsMapper;
+import com.project.service.base.DBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -13,54 +14,28 @@ import java.util.stream.Collectors;
 
 @Service("listsService")
 @Transactional
-public class ListsServiceImpl implements ListsService {
-    private static ListsMapper listsMapper;
+public class ListsServiceImpl extends DBService<Lists> implements ListsService {
+
+    private static ListsMapper _mapper;
+
+    public ListsServiceImpl() {
+        this.mapper = _mapper;
+    }
 
     public void setListsMapper(ListsMapper listsMapper){
-        this.listsMapper = listsMapper;
+        this._mapper = listsMapper;
+        this.mapper = _mapper;
     }
 
-    public List<Lists> findAll() {
-        List<Lists> listss = listsMapper.findAll();
-        return listss;
-    }
 
     public Lists findByName(String name) {
-        Lists lists = listsMapper.findByName(name);
+        Lists lists = _mapper.findByName(name);
         return lists;
     }
 
     public List<Lists> findByUserId(Long userlist) {
-        List<Lists> lists = listsMapper.findByUserId(userlist);
+        List<Lists> lists = _mapper.findByUserId(userlist);
         return lists;
-    }
-
-    public Lists save(Lists lists) {
-        if (lists.getId() == null) {
-            insert(lists);
-        } else {
-            update(lists);
-        }
-        return lists;
-    }
-
-    private Lists insert(Lists lists) {
-        listsMapper.insert(lists);
-        return lists;
-    }
-
-    private Lists update(Lists lists) {
-        listsMapper.update(lists);
-        return lists;
-    }
-
-    public void delete(Lists lists) {
-        Long listsId = lists.getId();
-        delete(listsId);
-    }
-
-    public void delete(Long id){
-        listsMapper.delete(id);
     }
 
     public boolean checkAuthority(User user, Long id){
@@ -69,10 +44,7 @@ public class ListsServiceImpl implements ListsService {
         return mayAccess.contains(id);
     }
 
-    public void clear(){
-        List<Lists> listss = findAll();
-        for (int i=0;i < listss.size();i++) {
-            delete(listss.get(i));
-        }
+    public void deepDelete(Long id){
+        _mapper.deepDelete(id);
     }
 }

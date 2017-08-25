@@ -99,5 +99,14 @@
         <property name="notesMapper" ref="notesMapper"/>
     </bean>
 
+    <bean id="contactMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" autowire="byType">
+        <property name="mapperInterface" value="com.project.persistence.ContactMapper" />
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+
+    <bean id="contactService" class="com.project.service.ContactServiceImpl">
+        <property name="contactMapper" ref="contactMapper"/>
+    </bean>
+
 
 </beans>

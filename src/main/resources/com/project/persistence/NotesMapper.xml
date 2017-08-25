@@ -50,5 +50,18 @@
         DELETE FROM notes WHERE ID = #{id}
     </delete>
 
+    <select id="findRange" parameterType="int" resultMap="notesResultMap">
+        SELECT *
+        FROM notes
+        LIMIT #{param1},#{param2}
+    </select>
+
+    <select id="size" resultType="Long">
+        SELECT COUNT(*) FROM notes
+    </select>
+
+    <delete id="clear">
+        DELETE FROM notes
+    </delete>
 
 </mapper>

@@ -26,6 +26,12 @@
         WHERE userlists = #{userlist}
     </select>
 
+    <select id="findById" parameterType="Long" resultMap="listsResultMap">
+        SELECT *
+        FROM list
+        WHERE ID = #{id}
+    </select>
+
     <insert id="insert" parameterType="Lists" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO list (NAME, userlists)
         VALUES (#{name}, #{userlist} )
@@ -40,6 +46,26 @@
 
     <delete id="delete" parameterType="long">
         DELETE FROM list WHERE ID = #{id}
+    </delete>
+
+    <delete id="deepDelete" parameterType="long">
+        DELETE FROM list,notes
+        USING list,notes
+        WHERE list.id = #{id} and notes.listsid = #{id}
+    </delete>
+
+    <select id="findRange" parameterType="int" resultMap="listsResultMap">
+        SELECT *
+        FROM list
+        LIMIT #{param1},#{param2}
+    </select>
+
+    <select id="size" resultType="Long">
+        SELECT COUNT(*) FROM list
+    </select>
+
+    <delete id="clear">
+        DELETE FROM list
     </delete>
 
 

@@ -3,6 +3,7 @@ package com.project.service;
 import com.project.domain.User;
 import com.project.persistence.PersonMapper;
 import com.project.persistence.UserMapper;
+import com.project.service.base.DBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,35 +13,22 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service("userService")
 @Transactional
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends DBService<User> implements UserService {
 
-    public static UserMapper userMapper;
+    private static UserMapper _mapper;
+
+    public UserServiceImpl() {
+        this.mapper = _mapper;
+    }
+
 
     public void setUserMapper(UserMapper userMapper){
-        this.userMapper = userMapper;
+        this._mapper = userMapper;
+        this.mapper = _mapper;
     }
-
-    @Override
-    public User save(User user) {
-        User temp = userMapper.findByName(user.getUsername());
-        //if user exist
-        if(temp != null)
-        {
-            //maybe i must throw exception
-            return null;
-        }
-        userMapper.insert(user);
-        return userMapper.findByName(user.getUsername());
-    }
-
-    @Override
-    public void delete(User user) {
-        userMapper.delete(user.getId());
-    }
-
 
     @Override
     public User getUser(String name) {
-        return userMapper.findByName(name);
+        return _mapper.findByName(name);
     }
 }

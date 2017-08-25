@@ -2,7 +2,7 @@ package com.project.domain;
 
 import java.io.Serializable;
 
-public class Contact implements Serializable {
+public class Contact implements Serializable,IEntity {
 
     private Long id;
 

@@ -4,6 +4,8 @@ import com.project.domain.Contact;
 import com.project.domain.User;
 import com.project.persistence.ContactMapper;
 
+import com.project.persistence.PersonMapper;
+import com.project.service.base.DBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -12,58 +14,24 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ContactServiceImpl implements ContactService{
+@Service("contactService")
+@Transactional
+public class ContactServiceImpl extends DBService<Contact> implements ContactService{
 
-    private static ContactMapper contactMapper;
+    private static ContactMapper _mapper;
 
-    public void setListsMapper(ContactMapper contactMapper){
-        this.contactMapper = contactMapper;
+    public ContactServiceImpl() {
+        this.mapper = _mapper;
     }
 
-    public List<Contact> findAll() {
-        List<Contact> contacts = contactMapper.findAll();
-        return contacts;
+    public void setContactMapper(ContactMapper contactMapper){
+        _mapper = contactMapper;
+        this.mapper = _mapper;
     }
 
-
-    public List<Contact> findByUserId(Long userid) {
-        List<Contact> contact = contactMapper.findByUserId(userid);
+    public Contact findByUserId(Long userid) {
+        Contact contact = _mapper.findByUserId(userid);
         return contact;
-    }
-
-    public Contact save(Contact contact) {
-        if (contact.getId() == null) {
-            insert(contact);
-        } else {
-            update(contact);
-        }
-        return contact;
-    }
-
-    private Contact insert(Contact contact) {
-        contactMapper.insert(contact);
-        return contact;
-    }
-
-    private Contact update(Contact contact) {
-        contactMapper.update(contact);
-        return contact;
-    }
-
-    public void delete(Contact contact) {
-        Long contactId = contact.getId();
-        delete(contactId);
-    }
-
-    public void delete(Long id){
-        contactMapper.delete(id);
-    }
-
-    public void clear(){
-        List<Contact> contacts = findAll();
-        for (int i=0;i < contacts.size();i++) {
-            delete(contacts.get(i));
-        }
     }
 
 }

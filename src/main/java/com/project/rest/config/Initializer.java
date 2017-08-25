@@ -32,7 +32,6 @@ public class Initializer implements WebApplicationInitializer {
         g_ctx.load("classpath:ApplicationContext.xml");
         g_ctx.refresh();
 
-
     }
 
 }

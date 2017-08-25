@@ -2,7 +2,7 @@ package com.project.domain;
 
 import java.io.Serializable;
 
-public class Notes implements Serializable {
+public class Notes implements Serializable,IEntity {
 
     private Long id;
 
@@ -11,7 +11,7 @@ public class Notes implements Serializable {
     private Boolean checkmark;
 
 
-    private int listsid;
+    private Long listsid;
 
     public Long getId() {
         return id;
@@ -38,11 +38,11 @@ public class Notes implements Serializable {
     }
 
 
-    public int getListsid() {
+    public Long getListsid() {
         return listsid;
     }
 
-    public void setListsid(int listsid) {
+    public void setListsid(Long listsid) {
         this.listsid = listsid;
     }
 
