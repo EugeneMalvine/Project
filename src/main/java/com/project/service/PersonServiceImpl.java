@@ -18,10 +18,9 @@ public class PersonServiceImpl extends DBService<Person> implements PersonServic
 
     public void setPersonMapper(PersonMapper personMapper){
         this._mapper = personMapper;
-        this.mapper = _mapper;
     }
 
-    public PersonServiceImpl() {
-        this.mapper = _mapper;
+    protected PersonMapper getMapper(){
+        return _mapper;
     }
 }

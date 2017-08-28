@@ -3,6 +3,7 @@ package com.project.service.base;
 import com.project.domain.IEntity;
 import com.project.persistence.PersonMapper;
 import com.project.persistence.base.IMapper;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -11,25 +12,21 @@ import java.util.List;
  */
 public abstract class DBService<T extends IEntity> implements IDBService<T> {
 
-    protected IMapper<T> mapper;
-
-    protected void setMapper(IMapper<T> mapper){
-        this.mapper = mapper;
-    }
+    protected abstract IMapper<T> getMapper();
 
     @Override
     public List<T> findAll() {
-        return mapper.findAll();
+        return getMapper().findAll();
     }
 
     @Override
     public List<T> findRange(int from,int ammount){
-        return mapper.findRange(from,ammount);
+        return getMapper().findRange(from,ammount);
     }
 
     @Override
     public T findById(Long id){
-        return mapper.findById(id);
+        return getMapper().findById(id);
     }
 
     @Override
@@ -44,7 +41,7 @@ public abstract class DBService<T extends IEntity> implements IDBService<T> {
 
     @Override
     public void delete(Long id) {
-        mapper.delete(id);
+        getMapper().delete(id);
     }
 
     @Override
@@ -54,25 +51,25 @@ public abstract class DBService<T extends IEntity> implements IDBService<T> {
 
     @Override
     public void clear() {
-        mapper.clear();
+        getMapper().clear();
     }
 
     @Override
     public T insert(T data){
-        mapper.insert(data);
+        getMapper().insert(data);
         return data;
     }
 
     @Override
     public T update(T data)
     {
-        mapper.update(data);
+        getMapper().update(data);
         return data;
     }
 
     @Override
     public Long size(){
-        Long size =  mapper.size();
+        Long size =  getMapper().size();
         return size;
     }
 

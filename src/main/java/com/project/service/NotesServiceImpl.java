@@ -19,13 +19,12 @@ public class NotesServiceImpl extends DBService<Notes> implements NotesService {
 
     private static NotesMapper _mapper;
 
-    public NotesServiceImpl() {
-        this.mapper = _mapper;
-    }
-
     public void setNotesMapper(NotesMapper notesMapper){
         this._mapper = notesMapper;
-        this.mapper = _mapper;
+    }
+
+    protected NotesMapper getMapper(){
+        return _mapper;
     }
 
     public Notes findByName(String name) {

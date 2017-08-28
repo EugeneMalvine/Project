@@ -1,6 +1,7 @@
 package com.project.service;
 import com.project.domain.Lists;
 import com.project.domain.User;
+import com.project.persistence.ContactMapper;
 import com.project.persistence.ListsMapper;
 import com.project.service.base.DBService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +19,13 @@ public class ListsServiceImpl extends DBService<Lists> implements ListsService {
 
     private static ListsMapper _mapper;
 
-    public ListsServiceImpl() {
-        this.mapper = _mapper;
-    }
 
     public void setListsMapper(ListsMapper listsMapper){
         this._mapper = listsMapper;
-        this.mapper = _mapper;
+    }
+
+    protected ListsMapper getMapper(){
+        return _mapper;
     }
 
 

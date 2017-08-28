@@ -17,14 +17,12 @@ public class UserServiceImpl extends DBService<User> implements UserService {
 
     private static UserMapper _mapper;
 
-    public UserServiceImpl() {
-        this.mapper = _mapper;
+    protected UserMapper getMapper(){
+        return _mapper;
     }
-
 
     public void setUserMapper(UserMapper userMapper){
         this._mapper = userMapper;
-        this.mapper = _mapper;
     }
 
     @Override

@@ -20,13 +20,12 @@ public class ContactServiceImpl extends DBService<Contact> implements ContactSer
 
     private static ContactMapper _mapper;
 
-    public ContactServiceImpl() {
-        this.mapper = _mapper;
-    }
-
     public void setContactMapper(ContactMapper contactMapper){
         _mapper = contactMapper;
-        this.mapper = _mapper;
+    }
+
+    protected ContactMapper getMapper(){
+        return _mapper;
     }
 
     public Contact findByUserId(Long userid) {

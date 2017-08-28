@@ -23,24 +23,21 @@
     <script type="text/javascript"> <%@include file="js/functional.js"%> </script>
 
 </head>
-<body onload="Load()" >
+<body onload="onLoad()" >
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
            <div class="navbar-header">
             <a class="navbar-brand" href="https://www.epolsoft.com/ru/home_ru/" title="www.epolsoft.com">Epol Soft</a>
             </div>
+            <div class="logout" align="right">
+                <a role="button" class="btn btn-danger" href="<c:url value="/logout" />"  > Выйти</a>
+            </div>
         </div>
     </nav>
 
     <div class="container">
-        <sec:authorize access="hasRole('ROLE_ADMIN')">
-            <h3>Admin: </h3>
-        </sec:authorize>
-        <sec:authorize access="hasRole('ROLE_USER')">
-            <h3>User: </h3>
-        </sec:authorize>
-
+            <h3 id="header"></h3>
         <form>
             <div class="row">
                 <div class="col-xs-5">
