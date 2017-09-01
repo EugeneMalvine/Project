@@ -2,7 +2,7 @@ package com.project;
 
 public class Constant{
     // формат View который мы будем использовать
-    public static final String VIEW_FORMAT = ".jsp";
+    public static final String VIEW_FORMAT = ".html";
     // указываем где будут лежать наши веб-страницы
     public static final String VIEW_FOLDER = "/pages/";
     // где искать контроллеры и остальные компоненты

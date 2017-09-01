@@ -17,7 +17,8 @@ import java.util.stream.Collectors;
 @Transactional
 public class ListsServiceImpl extends DBService<Lists> implements ListsService {
 
-    private static ListsMapper _mapper;
+    @Autowired
+    private ListsMapper _mapper;
 
 
     public void setListsMapper(ListsMapper listsMapper){

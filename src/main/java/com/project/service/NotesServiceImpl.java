@@ -17,7 +17,8 @@ import com.project.persistence.NotesMapper;
 @Transactional
 public class NotesServiceImpl extends DBService<Notes> implements NotesService {
 
-    private static NotesMapper _mapper;
+    @Autowired
+    private NotesMapper _mapper;
 
     public void setNotesMapper(NotesMapper notesMapper){
         this._mapper = notesMapper;

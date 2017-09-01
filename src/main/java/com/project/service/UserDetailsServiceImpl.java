@@ -29,8 +29,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         // с помощью нашего сервиса UserService получаем User
         User user = userService.getUser(email);
-        if(user == null)
-            return null;
 
         return user;
     }

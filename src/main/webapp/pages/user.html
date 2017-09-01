@@ -1,14 +1,3 @@
-<!--
-<%@ page language="java" contentType="text/html; charset=utf8"
-    pageEncoding="utf8"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
--->
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +9,7 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script type="text/javascript"> <%@include file="js/functional.js"%> </script>
+    <script src="pages/js/functional.js"> </script>
 
 </head>
 <body onload="onLoad()" >
@@ -31,7 +20,7 @@
             <a class="navbar-brand" href="https://www.epolsoft.com/ru/home_ru/" title="www.epolsoft.com">Epol Soft</a>
             </div>
             <div class="logout" align="right">
-                <a role="button" class="btn btn-danger" href="<c:url value="/logout" />"  > Выйти</a>
+                <a role="button" class="btn btn-danger" href="/logout" />Выйти</a>
             </div>
         </div>
     </nav>

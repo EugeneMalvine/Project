@@ -7,6 +7,7 @@ import com.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.BindingResult;
@@ -40,12 +41,14 @@ public class WorkController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
+    @PreAuthorize("hasAnyRole('ROLE_USER,ROLE_ADMIN')")
     public void addContact(@RequestBody Person contact) {
         personMapper.save(contact);
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
     @ResponseBody
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void deleteContact(@RequestBody String id) {
 
         try {

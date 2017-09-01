@@ -1,6 +1,8 @@
 package com.project.rest.config;
 
 import com.project.service.UserDetailsServiceImpl;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.support.ErrorPageFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
@@ -42,10 +45,30 @@ public class WebAppConfig extends WebMvcConfigurerAdapter{
         registry.addResourceHandler(Constant.VIEW_FOLDER + "**").addResourceLocations(Constant.VIEW_FOLDER);
     }
 
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        //главной страницы нету, перенаправляем в кабинет пользователя
+        registry.addRedirectViewController("/","/home");
+        //ресурс кабинета пользователя
+        registry.addViewController("/home").setViewName("user");
+        //временно
+        registry.addViewController("/home/cabinet").setViewName("cabinet");
+        //ресурс формы авторизации
+        registry.addViewController("/login").setViewName("login");
+    }
 
-   /* @Bean
-    public UserDetailsService getUserDetailsService(){
-        return new UserDetailsServiceImpl();
-    }*/
+    @Bean
+    public ErrorPageFilter errorPageFilter() {
+        return new ErrorPageFilter();
+    }
+
+    @Bean
+    public FilterRegistrationBean disableSpringBootErrorFilter(ErrorPageFilter filter) {
+        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
+        filterRegistrationBean.setFilter(filter);
+        filterRegistrationBean.setEnabled(false);
+        return filterRegistrationBean;
+    }
+
 
 }

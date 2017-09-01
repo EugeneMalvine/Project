@@ -14,7 +14,8 @@ import java.util.List;
 @Transactional
 public class PersonServiceImpl extends DBService<Person> implements PersonService {
 
-    private static PersonMapper _mapper;
+    @Autowired
+    private PersonMapper _mapper;
 
     public void setPersonMapper(PersonMapper personMapper){
         this._mapper = personMapper;

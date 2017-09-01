@@ -15,7 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UserServiceImpl extends DBService<User> implements UserService {
 
-    private static UserMapper _mapper;
+    @Autowired
+    private UserMapper _mapper;
 
     protected UserMapper getMapper(){
         return _mapper;

@@ -18,7 +18,8 @@ import java.util.stream.Collectors;
 @Transactional
 public class ContactServiceImpl extends DBService<Contact> implements ContactService{
 
-    private static ContactMapper _mapper;
+    @Autowired
+    private ContactMapper _mapper;
 
     public void setContactMapper(ContactMapper contactMapper){
         _mapper = contactMapper;
