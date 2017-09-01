@@ -61,11 +61,6 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
 
-    <!-- simple transactional service layer bean; MyBatis-Spring will create a proxy for the userMapper bean -->
-    <bean id="personService" class="com.project.service.PersonServiceImpl">
-        <property name="personMapper" ref="personMapper" />
-    </bean>
-
 
     <!-- Directly injecting mappers. The required SqlSessionFactory will be autowired. -->
     <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" autowire="byType">
@@ -73,21 +68,9 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
 
-    <bean id="userService" class="com.project.service.UserServiceImpl">
-        <property name="userMapper" ref="userMapper"/>
-    </bean>
-
-    <bean id="userDetailsService"  class="com.project.service.UserDetailsServiceImpl">
-        <property name="userService" ref="userService"/>
-    </bean>
-
     <bean id="listsMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" autowire="byType">
         <property name="mapperInterface" value="com.project.persistence.ListsMapper" />
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-    </bean>
-
-    <bean id="listsService" class="com.project.service.ListsServiceImpl">
-        <property name="listsMapper" ref="listsMapper"/>
     </bean>
 
     <bean id="notesMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" autowire="byType">
@@ -95,17 +78,9 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
 
-    <bean id="notesService" class="com.project.service.NotesServiceImpl">
-        <property name="notesMapper" ref="notesMapper"/>
-    </bean>
-
     <bean id="contactMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" autowire="byType">
         <property name="mapperInterface" value="com.project.persistence.ContactMapper" />
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-    </bean>
-
-    <bean id="contactService" class="com.project.service.ContactServiceImpl">
-        <property name="contactMapper" ref="contactMapper"/>
     </bean>
 
 

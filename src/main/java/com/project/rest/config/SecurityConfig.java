@@ -56,7 +56,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 + UserRoleEnum.ROLE_USER.name() + "','" + UserRoleEnum.ROLE_ADMIN.name() + "')")
                 .antMatchers("/home/**").access("hasAnyRole('"
                 + UserRoleEnum.ROLE_USER.name() + "','" + UserRoleEnum.ROLE_ADMIN.name() + "')")
-                .anyRequest().authenticated();
+                .anyRequest().authenticated().and()
+                .exceptionHandling().accessDeniedPage("/403");
 
         // включаем защиту от CSRF атак
         http.csrf()

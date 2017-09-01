@@ -55,6 +55,8 @@ public class WebAppConfig extends WebMvcConfigurerAdapter{
         registry.addViewController("/home/cabinet").setViewName("cabinet");
         //ресурс формы авторизации
         registry.addViewController("/login").setViewName("login");
+        //страница 403
+        registry.addViewController("/403").setViewName("403");
     }
 
     @Bean
