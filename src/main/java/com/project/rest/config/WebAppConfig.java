@@ -8,6 +8,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import com.project.Constant;
 
 import javax.annotation.Resource;
+import javax.sql.DataSource;
 
 // Говорим, что это конфигурация
 @Configuration
@@ -71,6 +74,5 @@ public class WebAppConfig extends WebMvcConfigurerAdapter{
         filterRegistrationBean.setEnabled(false);
         return filterRegistrationBean;
     }
-
 
 }

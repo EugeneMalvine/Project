@@ -36,6 +36,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    DataSource dataSource;
+
 
     // регистрируем нашу реализацию UserDetailsService
     // а также PasswordEncoder для приведения пароля в формат SHA1
@@ -91,9 +94,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login?logout")
                 // делаем не валидной текущую сессию
                 .invalidateHttpSession(true);
-         /*   .and()
-                .rememberMe().tokenRepository(persistentTokenRepository())
-                .tokenValiditySeconds(1209600);*/
+
+        //remember me configuration
+        http.rememberMe().
+                rememberMeParameter("remember-me-parameter").
+                rememberMeCookieName("remember-me-cookie").
+                tokenValiditySeconds(86400)
+                .tokenRepository(persistentTokenRepository());
     }
 
     @Bean
@@ -101,7 +108,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new ShaPasswordEncoder();
     }
 
-   /* @Bean
+    @Bean
     public PersistentTokenRepository persistentTokenRepository() {
         JdbcTokenRepositoryImpl db = new JdbcTokenRepositoryImpl();
         db.setDataSource(dataSource);
@@ -111,13 +118,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public SavedRequestAwareAuthenticationSuccessHandler
     savedRequestAwareAuthenticationSuccessHandler() {
-
         SavedRequestAwareAuthenticationSuccessHandler auth
                 = new SavedRequestAwareAuthenticationSuccessHandler();
         auth.setTargetUrlParameter("targetUrl");
         return auth;
-    }*/
-
+    }
 }
 
 

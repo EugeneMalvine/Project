@@ -35,6 +35,14 @@ CREATE TABLE `contact` (
   `birthday` VARCHAR(255) ,
   `email` VARCHAR(255) ,
   `userid` INT(11)  ,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`)
+  )
   ENGINE = InnoDB
   DEFAULT CHARACTER SET = utf8;
+
+create table persistent_logins (
+  username VARCHAR(64) NOT NULL ,
+  series VARCHAR(64) NOT NULL PRIMARY KEY,
+  token VARCHAR(64) NOT NULL ,
+  last_used TIMESTAMP NOT NULL
+)
