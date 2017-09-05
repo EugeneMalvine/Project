@@ -14,7 +14,6 @@ import com.project.persistence.NotesMapper;
 
 
 @Service("notesService")
-@Transactional
 public class NotesServiceImpl extends DBService<Notes> implements NotesService {
 
     @Autowired
@@ -37,7 +36,6 @@ public class NotesServiceImpl extends DBService<Notes> implements NotesService {
         List<Notes> notes = _mapper.findByListId(id);
         return notes;
     }
-
 
     public boolean contains(Long id,Long n_id){
         List<Long> idCollection =  findByListId(id).stream().map((Notes it) -> it.getId()).collect(Collectors.toList());

@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service("personService")
-@Transactional
 public class PersonServiceImpl extends DBService<Person> implements PersonService {
 
     @Autowired

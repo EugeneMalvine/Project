@@ -50,16 +50,8 @@ public class WorkController {
     @ResponseBody
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void deleteContact(@RequestBody String id) {
-
-        try {
-            Long n_id = Long.parseLong(id );
-            Person toFind = personMapper.findById(n_id);
-            if( toFind != null)
-                personMapper.delete(toFind);
-        }
-        catch(Exception e){
-
-        }
+        Long n_id = Long.parseLong(id);
+        personMapper.delete(n_id);
     }
 
 

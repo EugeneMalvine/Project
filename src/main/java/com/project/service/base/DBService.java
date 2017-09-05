@@ -30,6 +30,7 @@ public abstract class DBService<T extends IEntity> implements IDBService<T> {
     }
 
     @Override
+    @Transactional
     public T save(T data) {
         if (data.getId() == null) {
             insert(data);
@@ -40,11 +41,13 @@ public abstract class DBService<T extends IEntity> implements IDBService<T> {
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         getMapper().delete(id);
     }
 
     @Override
+    @Transactional
     public void delete(T data) {
         delete(data.getId());
     }
@@ -55,14 +58,15 @@ public abstract class DBService<T extends IEntity> implements IDBService<T> {
     }
 
     @Override
+    @Transactional
     public T insert(T data){
         getMapper().insert(data);
         return data;
     }
 
     @Override
-    public T update(T data)
-    {
+    @Transactional
+    public T update(T data) {
         getMapper().update(data);
         return data;
     }

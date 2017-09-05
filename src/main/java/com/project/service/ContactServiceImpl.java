@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service("contactService")
-@Transactional
 public class ContactServiceImpl extends DBService<Contact> implements ContactService{
 
     @Autowired

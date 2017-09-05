@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
  * Created by Denis on 13.08.2017.
  */
 @Service("userService")
-@Transactional
 public class UserServiceImpl extends DBService<User> implements UserService {
 
     @Autowired
@@ -27,6 +26,7 @@ public class UserServiceImpl extends DBService<User> implements UserService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public User getUser(String name) {
         return _mapper.findByName(name);
     }

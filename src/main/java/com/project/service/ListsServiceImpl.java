@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 
 
 @Service("listsService")
-@Transactional
 public class ListsServiceImpl extends DBService<Lists> implements ListsService {
 
     @Autowired
@@ -28,7 +27,6 @@ public class ListsServiceImpl extends DBService<Lists> implements ListsService {
     protected ListsMapper getMapper(){
         return _mapper;
     }
-
 
     public Lists findByName(String name) {
         Lists lists = _mapper.findByName(name);
@@ -46,6 +44,7 @@ public class ListsServiceImpl extends DBService<Lists> implements ListsService {
         return mayAccess.contains(id);
     }
 
+    @Transactional
     public void deepDelete(Long id){
         _mapper.deepDelete(id);
     }
