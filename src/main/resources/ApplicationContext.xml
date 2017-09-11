@@ -44,6 +44,7 @@
         <property name="mapperLocations" value="classpath*:com/project/persistence/*.xml"/>
     </bean>
 
+    
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
         <constructor-arg index="0" ref="sqlSessionFactory" />
     </bean>
