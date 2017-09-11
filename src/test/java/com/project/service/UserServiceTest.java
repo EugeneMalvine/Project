@@ -9,7 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:ApplicationContext.xml")
+@ContextConfiguration(locations = {"classpath:ApplicationContext.xml","classpath:TestContext.xml"})
 public class UserServiceTest {
     @Configuration
     static class UserServiceTestContextConfiguration{

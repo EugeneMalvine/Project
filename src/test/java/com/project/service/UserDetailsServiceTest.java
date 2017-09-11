@@ -16,7 +16,7 @@ import java.util.Set;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:ApplicationContext.xml")
+@ContextConfiguration(locations = {"classpath:ApplicationContext.xml","classpath:TestContext.xml"})
 public class UserDetailsServiceTest {
     @Configuration
     static class UserDetailsServiceTestContextConfiguration{
