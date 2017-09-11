@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:ApplicationContext.xml")
+@ContextConfiguration(locations = {"classpath:ApplicationContext.xml","classpath:TestContext.xml"})
 public class NotesServiceTest {
 
     @Autowired

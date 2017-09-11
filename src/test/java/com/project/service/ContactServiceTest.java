@@ -4,17 +4,26 @@ import com.project.domain.Contact;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.sql.DataSource;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:ApplicationContext.xml")
+@ContextConfiguration(locations = {"classpath:ApplicationContext.xml","classpath:TestContext.xml"})
 public class ContactServiceTest {
 
     @Autowired
     private ContactService contactService;
+
+    @BeforeClass
+    public static void setUpClass() {
+
+    }
 
     @Test
     public void findById(){
